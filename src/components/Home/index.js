@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { accessToken } from '../../config.json';
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('Batman');
@@ -8,9 +8,7 @@ export default function Home() {
 
   const searchName = async (event) => {
     event.preventDefault();
-    const res = await axios.get(`https://superheroapi.com/api/${accessToken}/search/${searchTerm}`, {
-      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
-    });
+    const res = await axios.get(`${API_URL}/search/Batman`);
     setResults(res.data);
     console.log(results);
   };
